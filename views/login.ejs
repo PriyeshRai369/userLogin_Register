@@ -4,15 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login</title>
+    <link rel="stylesheet" href="../css/user.login.css">
 </head>
 <body>
-    <h1>Login Now</h1>
-
-    <form action="/user/login" method="post">
-
-        email:<input type="text" name="login">
-        password:<input type="password" name="password">
-        <button type="submit">submit</button>
-    </form>
+    <section class="container">
+        <div class="card">
+            <div class="heading">
+                <h1>Login Now</h1>
+            </div>
+            <div class="forms">
+                <form action="/user/login" method="post">
+                    <input type="text" name="login" placeholder="Email/Username" class="inputs">
+                    <input type="password" name="password" placeholder="Password" class="inputs">
+                    <button type="submit" class="btn">submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

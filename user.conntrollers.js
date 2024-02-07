@@ -75,7 +75,8 @@ const userLogin = async (req,res)=>{
     if(!verifyPassword){
         throw new Error("Incorrect Password try again...!")
     }
-    const logginUser = await User.findById(user._id).select("-password")
+    const logginUser = await User.findById(user._id)
+    .select("-password")
     return res.status(200).json({
         logginUser,
         message:"Login Successfully"
