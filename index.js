@@ -6,12 +6,15 @@ dotenv.config({
     path:"./.env"
 })
 
-
+app.set('view engine', 'ejs');
 
 dbConnect().then(()=>{
     app.get('/',(req,res)=>{
-        res.send("Hii from Home")
+        res.render("index")
     })
+    // app.get('/user/register',(req,res)=>{
+    //     res.render("index")
+    // })
 
     app.listen(3000,()=>{
         console.log("app is started");

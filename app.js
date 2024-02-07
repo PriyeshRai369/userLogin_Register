@@ -10,6 +10,7 @@ app.use(cors({
 
 app.use(express.json({limit:"50kb"}))
 app.use(express.urlencoded({extended:true},{limit:"50kb"}))
+app.set('view engine', 'ejs');
 import router from "./user.router.js"
 app.use("/user",router)
 

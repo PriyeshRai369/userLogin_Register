@@ -42,10 +42,11 @@ const userRegistration = async (req,res)=>{
                         throw new Error("unable to register user")
                     }
                     else{
-                        return res.status(201).json({
-                            data: isCreated,
-                            message: "User created successfully"
-                        })
+                        // return res.status(201).json({
+                        //     data: isCreated,
+                        //     message: "User created successfully"
+                        // })
+                        res.redirect("/user/register")
                     }
                 }
             }
@@ -58,13 +59,13 @@ const userRegistration = async (req,res)=>{
 }
 
 const userLogin = async (req,res)=>{
-    const {email,username,password}=req.body
-    if(!(email || username)){
+    const {login,password}=req.body
+    if(!login){
         throw new Error("username or email is required")
     }
-    const user =await User.findOne({
+    const user = await User.findOne({
         $or:[
-            {email},{username}
+            {email:login},{username:login}
         ]
     })
     if(!user){
@@ -79,6 +80,7 @@ const userLogin = async (req,res)=>{
         logginUser,
         message:"Login Successfully"
     })
+    // res.redirect("/user/register")
 
 }
 export {userRegistration , userLogin}
