@@ -13,11 +13,12 @@
                 <h1>Register Now</h1>
             </div>
             <div class="forms">
-                <form action="/user/register" method="post">
+                <form action="/user/register" method="post" enctype="multipart/form-data">
                     <input type="text" name="name" placeholder="Name" class="inputs">
                     <input type="text" name="username" placeholder="Username" class="inputs">
                     <input type="email" name="email" placeholder="Email" class="inputs">
                     <input type="password" name="password" placeholder="Password" class="inputs">
+                    <input type="file" name="avatar" class="file">
                     <button type="submit" class="btn">submit</button>
                 </form>
             </div>

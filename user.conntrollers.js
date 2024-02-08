@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
 import { User } from "./user.models.js"
+import { fileUpload } from "./cloudinary.js";
 
 const userRegistration = async (req,res)=>{
     try {
@@ -31,22 +31,22 @@ const userRegistration = async (req,res)=>{
                     throw new Error("Try another username")
                 }
                 else{
+                    const path=req.file.path
+                    console.log(path);
+                    const avatar = await fileUpload(path)
                     const user = await User.create({
                         name,
                         username,
                         password,
-                        email
+                        email,
+                        avatar:avatar?.url || "https://images.rawpixel.com/image_png_400/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjkzNy1hZXctMTM5LnBuZw.png"
                     })
                     const isCreated = await User.findById(user._id).select("-password")
                     if(!isCreated){
                         throw new Error("unable to register user")
                     }
                     else{
-                        // return res.status(201).json({
-                        //     data: isCreated,
-                        //     message: "User created successfully"
-                        // })
-                        res.redirect("/user/register")
+                        res.redirect("/user/login")
                     }
                 }
             }
@@ -77,11 +77,6 @@ const userLogin = async (req,res)=>{
     }
     const logginUser = await User.findById(user._id)
     .select("-password")
-    return res.status(200).json({
-        logginUser,
-        message:"Login Successfully"
-    })
-    // res.redirect("/user/register")
-
+    res.redirect(`/user/${user.username}`)
 }
 export {userRegistration , userLogin}

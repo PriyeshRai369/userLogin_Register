@@ -66,7 +66,12 @@ html, body{
         margin-top: 10px;
         padding: 20px;
 
-
+        .file{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 25%;
+        }
         .inputs{
             border: none;
             position: absolute;
@@ -107,7 +112,7 @@ html, body{
             border:3px solid #C850C0;
             border-radius: 30px;
             position: absolute;
-            bottom: 15%;
+            bottom: 9%;
             left: 50%;
             transform: translateX(-50%);
             cursor: pointer;
